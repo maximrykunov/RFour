@@ -1,0 +1,17 @@
+Hello, Rails!
+
+= form_tag welcome_index_path, :method => 'get' do
+  %p
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil
+
+- if @venues && @venues.size
+  %ul
+    - @venues.venues.each do |venue|
+      %li
+        - img = "#{venue.categories[0].icon.prefix}#{venue.categories[0].icon.sizes[0]}#{venue.categories[0].icon.name}"
+        .image= image_tag img
+        .url= link_to venue.name, venue_details_path(id: venue.id)
+        .url= link_to 'foursquare_link', venue.canonicalUrl
+        .address= "#{venue.location.city} #{venue.location.address}"
+        =# venue.inspect

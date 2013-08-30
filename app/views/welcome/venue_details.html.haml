@@ -1,0 +1,14 @@
+venue_details
+%br
+- if @venue
+  %ul
+    %li= "id: #{@venue.id}"
+    %li= "name: #{@venue.name}"
+    %li= "location: #{@venue.location}"
+    %li
+      photos:
+      =# @venue.photos.groups[1].items[0].sizes.items[1].url.inspect
+      - if @venue.photos.groups[1]
+        %ul
+        - @venue.photos.groups[1].items.take(5).each do |photo|
+          %li= image_tag photo.sizes.items[1].url
